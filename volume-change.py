@@ -42,6 +42,7 @@ logo = 'audio-volume-'
 label = "{}%".format(current_vol_percentage)
 if current_vol_percentage == 0:
     logo += 'muted'
+    label = 'muted'
 elif current_vol_percentage < 30:
     logo += 'low'
 elif current_vol_percentage < 70:
@@ -51,5 +52,5 @@ else:
 logo += '-symbolic'
 
 # Make the dbus method call
-interface.ShowOSD({"icon":logo, "level":current_vol_percentage})
+interface.ShowOSD({"icon":logo, "level":current_vol_percentage, "label": "Master Volume: {}".format(label)})
 
