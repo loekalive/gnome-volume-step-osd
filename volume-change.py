@@ -2,7 +2,7 @@
 # By: Garrett Holbrook
 # Date: August 27th, 2015
 #
-# Usage: Changes the system volume through amixer and then 
+# Usage: Changes the system volume through amixer and then
 #        makes a dbus method call to the gnome shell to get the
 #        gnome volume OSD (On Screen Display)
 #
@@ -66,17 +66,17 @@ else:
     if vol_action in ['mute', 'increase']:
         check_output(base_cmd + ['sset', volume_type, "unmute"])
 
-# Determining which logo to use based off of the percentage
-logo = 'audio-volume-'
-if vol_percentage == 0:
-    logo += 'muted'
+# Determining which logo to use based on the percentage
+if label == 'muted':
+    logo = 'muted'
 elif vol_percentage < 30:
-    logo += 'low'
+    logo = 'low'
 elif vol_percentage < 70:
-    logo += 'medium'
+    logo = 'medium'
 else:
-    logo += 'high'
-logo += '-symbolic'
+    logo = 'high'
+logo = "audio-volume-{}-symbolic".format(logo)
+label = "{} Volume: {}".format(volume_type, label)
 
 # Make the dbus method call
-interface.ShowOSD({"icon": logo, "level": vol_percentage, "label": "{} Volume: {}".format(volume_type, label)})
+interface.ShowOSD({"icon": logo, "level": vol_percentage, "label": label})
