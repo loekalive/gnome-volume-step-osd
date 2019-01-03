@@ -45,12 +45,14 @@ except IndexError:
     exit(1)
 
 # Calculate the new level based on an average for all levels.
-vol_percentage = [int(x) for x in findall(r'\[(\d{1,2})\%\]', output)]
+vol_percentage = [int(x) for x in findall(r'\[(\d{1,3})\%\]', output)]
 vol_percentage = int(sum(vol_percentage)/len(vol_percentage)+0.5)
 if vol_action == 'increase':
     vol_percentage += vol_percent_change
 elif vol_action == 'decrease':
     vol_percentage -= vol_percent_change
+if vol_percentage > 100:
+    vol_percentage = 100
 label = "{}%".format(vol_percentage)
 
 # Make actual changes.
