@@ -69,9 +69,9 @@ else:
 # Determining which logo to use based on the percentage
 if label == 'muted':
     logo = 'muted'
-elif vol_percentage < 30:
+elif vol_percentage < 34:
     logo = 'low'
-elif vol_percentage < 70:
+elif vol_percentage < 67:
     logo = 'medium'
 else:
     logo = 'high'
